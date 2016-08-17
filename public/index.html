@@ -53,19 +53,31 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
 (function() {
+
 	function randomColorPicker(){
 	var random = Math.floor(Math.random() * $('.square').length);
 		$('.square').eq(random).css("opacity", "1");
-		
+		console.log(random);
 		var timeoutId = setTimeout(function ()
 			{
 			  $(".square").removeAttr('style');
 			}, 1000);
-	}	
-		randomColorPicker();
+	}
+		var count = 0;
+		var max = 5;
+		var intervalId = setInterval(function () {
+		    if (count >= max) {
+		        clearInterval(intervalId);
+		        console.log('All done');
+		    } else {
+		    	randomColorPicker()
+		        count++;
+		    }
+		}, 1500);	
+		;
 
 
-		
+
 })();
 </script>
 </body>

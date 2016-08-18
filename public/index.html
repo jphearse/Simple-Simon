@@ -49,8 +49,8 @@
 <body>
 <div class="container">
 <div class="row">
-<div class="square col-sm-12 col-md-6" id="red"></div>
-<div class="square col-sm-12 col-md-6" id="blue"></div>
+<div class="square col-sm-6 col-md-6" id="red"></div>
+<div class="square col-sm-6 col-md-6" id="blue"></div>
 </div>
 <div class="row">
 <div class="square col-sm-6 col-md-6" id="green"></div>
@@ -100,8 +100,6 @@ function randomColorPicker(){
         console.log(sequence);
     }  
 
-
-
     var round = 1;
     $("#button").click(function (){
         randomColorPicker();
@@ -147,12 +145,7 @@ function randomColorPicker(){
     });
     $(".square").mousedown(function(){
         $(this).css("opacity", "1");
-    });
-
-
-
-
-          
+    });     
 
 })();
 </script>

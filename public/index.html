@@ -4,6 +4,12 @@
     <title>Simple Simon</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
+        body{
+            /*background-color: gray;*/
+        }
+        h2{
+            text-align: center;
+        }
         .container{
             width: 350px;
             border: solid black 4px;
@@ -33,21 +39,28 @@
             background-color: yellow;
             margin: 10px;
         }
+        #button{
+            text-align: center;
+            margin-top: 10px;
+        }
 
     </style>
 </head>
 <body>
 <div class="container">
 <div class="row">
-<div class="square col-md-6" id="red"></div>
-<div class="square col-md-6" id="blue"></div>
+<div class="square col-sm-12 col-md-6" id="red"></div>
+<div class="square col-sm-12 col-md-6" id="blue"></div>
 </div>
 <div class="row">
-<div class="square col-md-6" id="green"></div>
-<div class="square col-md-6" id="yellow"></div>
+<div class="square col-sm-6 col-md-6" id="green"></div>
+<div class="square col-sm-6 col-md-6" id="yellow"></div>
 </div>
 </div>
-
+<h2></h2>
+<div id="button">
+    <button>Start Game</button>
+</div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -60,7 +73,6 @@ var sequence = [];
 var count = 0;
 var j = 0;
 function randomColorPicker(){
- // array to hold correct pattern
     for(var i = 0; i < max; i++){
         random = Math.floor(Math.random() * $('.square').length);
         sequence.push(random);
@@ -71,28 +83,34 @@ function randomColorPicker(){
     if (count >= sequence.length){
         clearInterval(intervalId);
         count = 0;
+        patternPosition = 0;
         console.log('All done');
     } else {
-        
-        
+
         $('.square').eq(sequence[count]).css("opacity","1");
 
         count++;
         var timeoutId = setTimeout(function ()
         {
           $(".square").removeAttr('style');
-        }, 1000);
+        }, 500);
 
     } 
-    }, 1500);
-
+    }, 1000);
         console.log(sequence);
     }  
 
 
 
-    randomColorPicker();
-    var i = 0;
+    var round = 1;
+    $("#button").click(function (){
+        randomColorPicker();
+        $("h2").html("Round # "+ round);
+
+        $("#button").hide();
+    });
+
+    var patternPosition = 0;
     var userInput; //user input 
     $(".square").mouseup(function(e){
         $(this).css("opacity", ".5");
@@ -110,13 +128,21 @@ function randomColorPicker(){
         }
         console.log(userInput);
         
-        if (userInput == sequence[i]){ 
-            i++;
-            
-            randomColorPicker();
-            console.log("yes");
+        if (userInput == sequence[patternPosition]){ 
+            console.log("correct");
+            patternPosition++;
+            if( patternPosition == sequence.length){
+                round++;
+                
+                randomColorPicker();
+                $("h2").html("Round # "+ round)
+           }
         } else {    // if wrong key presesed set i back to 0
+            sequence = [];
             console.log("Start Over");
+            $("#button").show();
+            $("h2").html("Start New Game");
+            round = 1;
         }
     });
     $(".square").mousedown(function(){

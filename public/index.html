@@ -39,12 +39,12 @@
 <body>
 <div class="container">
 <div class="row">
-<div class="square col-md-6" id="red"></div>
-<div class="square col-md-6" id="blue"></div>
+<div class="square col-md-6" id="red">0</div>
+<div class="square col-md-6" id="blue">1</div>
 </div>
 <div class="row">
-<div class="square col-md-6" id="green"></div>
-<div class="square col-md-6" id="yellow"></div>
+<div class="square col-md-6" id="green">2</div>
+<div class="square col-md-6" id="yellow">3</div>
 </div>
 </div>
 
@@ -53,70 +53,111 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
 (function() {
+    $(".square").html("")
+
     var random = 0;
-    var sequence = [];
     var max = 4;
+    var sequence;
+    var count = 0;
+    var j = 0;
+    // function randomColorPicker(){
+    // sequence = []; // array to hold correct pattern
+    // random = Math.floor(Math.random() * $('.square').length);   //picks random squares
+    //     $('.square').eq(random).css("opacity", "1");
+    //     console.log(random);
+    //     sequence.push(random);
+    //     var timeoutId = setTimeout(function ()
+    //         {
+    //           $(".square").removeAttr('style');
+    //         }, 1000);
+    // }
+
+    //     var count = 0;      //running sequence number of times
+    //     var max = 2;            
+    //     var intervalId = setInterval(function () {
+    //         if (count >= max) {
+    //             clearInterval(intervalId);
+                
+    //             console.log('All done');
+    //         } else {
+    //             randomColorPicker()
+    //             count++;
+    //         }
+    //     }, 1500);   
+        
     function randomColorPicker(){
-    random = Math.floor(Math.random() * $('.square').length);
-        $('.square').eq(random).css("opacity", "1");
-        console.log(random);
-        var timeoutId = setTimeout(function ()
-            {
-              $(".square").removeAttr('style');
-            }, 1000);
-        sequence.push(random);
-    }
-        var count = 0;
-        var intervalId = setInterval(function () {
-            if (count >= max) {
+        sequence = []; // array to hold correct pattern
+            for(var i = 0; i < max; i++){
+                random = Math.floor(Math.random() * $('.square').length);
+                
+                sequence.push(random);
+                console.log(random);
+            }
+
+
+
+            var intervalId = setInterval(function () {
+            if (count >= max){
                 clearInterval(intervalId);
+                
                 console.log('All done');
             } else {
-                randomColorPicker()
                 count++;
+                j++;
+                
+                $('.square').eq(sequence[j-1]).css("opacity","1");
+              
+
+              var timeoutId = setTimeout(function ()
+            {
+              $(".square").removeAttr('style');
+          }, 1000);
+
             }
-        }, 1500);   
+            
+        }, 1500);
+                console.log(sequence);
+
+    }  
+
+
+
+    randomColorPicker();
+    var i = 0;
+    var userInput; //user input 
+    var green = 2;
+    $(".square").mouseup(function(e){
+        $(this).css("opacity", ".5");
+        if (this.id =="red"){
+            userInput = 0;
+        }
+        if (this.id =="blue"){
+            userInput = 1;
+        }
+        if (this.id =="green"){
+            userInput = 2;
+        }
+        if (this.id =="yellow"){
+            userInput = 3;
+        }
+        console.log(userInput);
         
-
-        // $(".square").click(function (e){
-        //  console.log("clicked");
-        //  console.log(e.target.id);
-        // if (e.target.id == "green"){
-        //  $("#green").mousedown(function(){
-        //      $("#green").css("opacity", "1");
-        //  });
-        // }
-  //   });
-    $("#red").mouseup(function(e){
-        $(this).css("opacity", ".5");
-        console.log(e.target.id);
+        if (userInput == sequence[i]){ // if keycode is equal to konami code first element go to next element...
+            i++;
+            console.log("yes");
+        } else {    // if wrong key presesed set i back to 0
+            i = 0;
+            console.log("Start Over");
+        }
     });
-    $("#red").mousedown(function(){
-        $(this).css("opacity", "1");
-    });
-    $("#blue").mouseup(function(e){
-        $(this).css("opacity", ".5");
-        console.log(e.target.id);
-    });
-    $("#blue").mousedown(function(){
-        $(this).css("opacity", "1");
-    });
-    $("#green").mouseup(function(e){
-        $(this).css("opacity", ".5");
-        console.log(e.target.id);
-    });
-    $("#green").mousedown(function(){
-        $(this).css("opacity", "1");
-    });
-     $("#yellow").mouseup(function(e){
-        $(this).css("opacity", ".5");
-        console.log(e.target.id);
-    });
-    $("#yellow").mousedown(function(){
+    $(".square").mousedown(function(){
         $(this).css("opacity", "1");
     });
 
 
+
+
+          
 
 })();
 </script>

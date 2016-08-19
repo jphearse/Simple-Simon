@@ -4,20 +4,19 @@
     <title>Simple Simon</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
-        body{
-            /*background-color: gray;*/
-        }
         h2{
             text-align: center;
         }
         .container{
             width: 350px;
             border: solid black 4px;
+            background-color: #1a1a1a;
         }
         .square{
             height: 150px;
             width: 150px;
             border: solid black 1px;
+            box-shadow: 5px 5px 5px #404040;
         }
         #red{
             opacity: .5;
@@ -49,12 +48,12 @@
 <body>
 <div class="container">
 <div class="row">
-<div class="square col-sm-6 col-md-3" id="red"></div>
-<div class="square col-sm-6 col-md-3" id="blue"></div>
+<div class="square col-xs-6 col-sm-6 col-md-3" id="red"></div>
+<div class="square col-xs-6 col-sm-6 col-md-3" id="blue"></div>
 </div>
 <div class="row">
-<div class="square col-sm-6 col-md-3" id="green"></div>
-<div class="square col-sm-6 col-md-3" id="yellow"></div>
+<div class="square col-xs-6 col-sm-6 col-md-3" id="green"></div>
+<div class="square col-xs-6 col-sm-6 col-md-3" id="yellow"></div>
 </div>
 </div>
 <h2></h2>
@@ -97,7 +96,7 @@ function randomColorPicker(){
         }, 500);
 
     } 
-    }, 1000);
+    }, 800);
         console.log(sequence);
     }  
 
@@ -127,7 +126,7 @@ function randomColorPicker(){
             userInput = 3;
         }
         console.log(userInput);
-        
+        $(this).css("box-shadow","none");
         if (userInput == sequence[patternPosition]){        //if correct color picked in right order, moves to next color in array
             console.log("correct");
             patternPosition++;
@@ -147,7 +146,7 @@ function randomColorPicker(){
         var timeoutId = setTimeout(function ()
         {
           $(".square").removeAttr('style');
-        }, 90);
+        }, 100);
     };
 
 

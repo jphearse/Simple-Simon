@@ -49,12 +49,12 @@
 <body>
 <div class="container">
 <div class="row">
-<div class="square col-sm-6 col-md-6" id="red"></div>
-<div class="square col-sm-6 col-md-6" id="blue"></div>
+<div class="square col-sm-6 col-md-3" id="red"></div>
+<div class="square col-sm-6 col-md-3" id="blue"></div>
 </div>
 <div class="row">
-<div class="square col-sm-6 col-md-6" id="green"></div>
-<div class="square col-sm-6 col-md-6" id="yellow"></div>
+<div class="square col-sm-6 col-md-3" id="green"></div>
+<div class="square col-sm-6 col-md-3" id="yellow"></div>
 </div>
 </div>
 <h2></h2>
@@ -71,7 +71,7 @@ var random = 0;
 var max = 1;
 var sequence = [];
 var count = 0;
-var j = 0;
+
 function randomColorPicker(){
     for(var i = 0; i < max; i++){
         random = Math.floor(Math.random() * $('.square').length);
@@ -84,11 +84,12 @@ function randomColorPicker(){
         clearInterval(intervalId);
         count = 0;
         patternPosition = 0;
+        $(".square").on("click", onClick);
         console.log('All done');
     } else {
 
         $('.square').eq(sequence[count]).css("opacity","1");
-
+        $(".square").off("click", onClick);
         count++;
         var timeoutId = setTimeout(function ()
         {
@@ -110,8 +111,9 @@ function randomColorPicker(){
 
     var patternPosition = 0;
     var userInput; //user input 
-    $(".square").mouseup(function(e){
-        $(this).css("opacity", ".5");
+    $(".square").click(onClick);
+    function onClick (e){       // allows opacity to be changed when clicked
+        $(this).css("opacity", "1");
         if (this.id =="red"){
             userInput = 0;
         }
@@ -126,7 +128,7 @@ function randomColorPicker(){
         }
         console.log(userInput);
         
-        if (userInput == sequence[patternPosition]){ 
+        if (userInput == sequence[patternPosition]){        //if correct color picked in right order, moves to next color in array
             console.log("correct");
             patternPosition++;
             if( patternPosition == sequence.length){
@@ -135,17 +137,19 @@ function randomColorPicker(){
                 randomColorPicker();
                 $("h2").html("Round # "+ round)
            }
-        } else {    // if wrong key presesed set i back to 0
-            sequence = [];
+        } else {    
+            sequence = [];      //if wrong then start game over
             console.log("Start Over");
             $("#button").show();
             $("h2").html("Start New Game");
             round = 1;
         }
-    });
-    $(".square").mousedown(function(){
-        $(this).css("opacity", "1");
-    });     
+        var timeoutId = setTimeout(function ()
+        {
+          $(".square").removeAttr('style');
+        }, 90);
+    };
+
 
 })();
 </script>

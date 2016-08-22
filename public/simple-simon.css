@@ -1,0 +1,65 @@
+html{
+        height: 100%;
+    }
+    body{
+        background-image: url("/hogwarts.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    h2{
+        font-family: Century;
+        text-align: center;
+        color: white;
+        margin-top: 75px;
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+    }
+    .container{
+        width: 350px;
+        border: solid black 4px;
+        background-color: rgba(160, 160, 160, 0.85);
+        position: relative;
+        transform: translateY(50%);
+    }
+    .square{
+        height: 150px;
+        width: 150px;
+        border: solid black 1px;
+        box-shadow: 5px 5px 5px #404040;
+    }
+    #red{
+        opacity: .5;
+        background: url(/gryf.png) no-repeat center;
+        background-color: red;
+        margin: 10px;
+    }
+    #blue{
+        opacity: .5;
+        background: url(/raven.png) no-repeat center;
+        background-color: blue;
+        margin: 10px;
+    }
+    #green{
+        opacity: .5;
+        background: url(/slyt.png) no-repeat center;
+        background-color: green;
+        margin: 10px;
+    }
+    #yellow{
+        opacity: .5;
+        background: url(/huff.png) no-repeat center;
+        background-color: yellow;
+        margin: 10px;
+    }
+    #button{
+        text-align: center;
+        margin-top: 120px;
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+    }

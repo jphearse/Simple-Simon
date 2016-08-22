@@ -34,10 +34,9 @@ function randomColorPicker(){      //generates sequence
         console.log(sequence);
     }  
 
-    var round = 1;                      //counts rounds that the user reaches
-    $("#button").click(function (){
+    $("#button").click(function (){          //counts rounds that the user reaches
         randomColorPicker();
-        $("h2").html("Round # "+ round);
+        $("h2").html("Round # "+ sequence.length);
         $("#button").hide();
     });
 

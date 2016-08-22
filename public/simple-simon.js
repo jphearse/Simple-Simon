@@ -34,7 +34,8 @@ function randomColorPicker(){      //generates sequence
         console.log(sequence);
     }  
 
-    $("#button").click(function (){          //counts rounds that the user reaches
+    var round = 1;                      //counts rounds that the user reaches
+    $("button").click(function (){
         randomColorPicker();
         $("h2").html("Round # "+ sequence.length);
         $("#button").hide();
@@ -63,10 +64,10 @@ function randomColorPicker(){      //generates sequence
             console.log("correct");
             patternPosition++;
             if( patternPosition == sequence.length){
-                round++;
+                sequence.length;
                 
                 randomColorPicker();
-                $("h2").html("Round # "+ round)
+                $("h2").html("Round # "+ sequence.length)
            }
         } else {    
             sequence = [];      //if wrong then start game over

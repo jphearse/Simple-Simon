@@ -5,14 +5,14 @@ var max = 1;
 var sequence = [];
 var count = 0;
 
-function randomColorPicker(){
+function randomColorPicker(){      //generates sequence
     for(var i = 0; i < max; i++){
         random = Math.floor(Math.random() * $('.square').length);
         sequence.push(random);
         console.log(random);
     }
    
-    var intervalId = setInterval(function () {
+    var intervalId = setInterval(function () {      //runs interval for length of array every 800 milliseconds
         if (count >= sequence.length){
             clearInterval(intervalId);
             count = 0;
@@ -21,12 +21,12 @@ function randomColorPicker(){
             console.log('All done');
         } else {
 
-            $('.square').eq(sequence[count]).css("opacity","1");
+            $('.square').eq(sequence[count]).css("opacity","1");    //adds style attribute
             $(".square").off("click", onClick);
             count++;
                 var timeoutId = setTimeout(function ()
                 {
-                  $(".square").removeAttr('style');
+                  $(".square").removeAttr('style');     //removes attribute after half second
                 }, 500);
 
             } 
@@ -45,11 +45,11 @@ function randomColorPicker(){
     var userInput; //user input 
     $(".square").click(onClick);
     function onClick (e){       // allows opacity to be changed when clicked
-        $(this).css("opacity", "1");
+        $(this).css("opacity", "1");    //sets opacity to 1 when clicked
         if (this.id =="red"){
             userInput = 0;
         }
-        if (this.id =="blue"){
+        if (this.id =="blue"){  //if blue is clicked set user input to 1
             userInput = 1;
         }
         if (this.id =="green"){
@@ -78,7 +78,7 @@ function randomColorPicker(){
         }
         var timeoutId = setTimeout(function ()
         {
-          $(".square").removeAttr('style');
+          $(".square").removeAttr('style');     //removes attribute after 100 milliseconds
         }, 100);
     };
 
